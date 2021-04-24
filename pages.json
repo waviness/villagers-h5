@@ -1,0 +1,108 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/develope/develope",
+			"style": {
+				"navigationBarTitleText": "开发中",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mailBox/mailBox",
+			"style": {
+				"navigationBarTitleText": "书记信箱",
+				"navigationBarBackgroundColor": "#F2F2F6",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mailBox/mailReply/mailReply",
+			"style": {
+				"navigationBarTitleText": "信件回复",
+				"navigationBarBackgroundColor": "#F2F2F6",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mailBox/mailAdd/mailAdd",
+			"style": {
+				"navigationBarTitleText": "书记信箱",
+				"navigationBarBackgroundColor": "#F2F2F6",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/moments/publish",
+			"style": {
+				"navigationBarTitleText": "动态发布",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/peace/publish",
+			"style": {
+				"navigationBarTitleText": "矛盾调解",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/event/publish",
+			"style": {
+				"navigationBarTitleText": "事件上报",
+				"enablePullDownRefresh": false
+			}
+		}
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "横溪坞村",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"custom": true,
+		"color": "#999999",
+		"selectedColor": "#69C0FF",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "横溪坞村",
+				"iconPath": "static/icon/icon_tab_1.png",
+				"selectedIconPath": "static/icon/icon_tab_1_s.png"
+			},
+			{
+				"pagePath": "pages/serve/serve",
+				"text": "服务大厅",
+				"iconPath": "static/icon/icon_tab_2.png",
+				"selectedIconPath": "static/icon/icon_tab_2_s.png"
+			},
+			{
+				"pagePath": "pages/release/release",
+				"text": "发布",
+				"iconPath": "static/icon/icon_tab_3.png",
+				"selectedIconPath": "static/icon/icon_tab_3.png"
+			},
+			{
+				"pagePath": "pages/message/message",
+				"text": "消息",
+				"iconPath": "static/icon/icon_tab_4.png",
+				"selectedIconPath": "static/icon/icon_tab_4_s.png"
+			},
+			{
+				"pagePath": "pages/my/my",
+				"text": " 我的",
+				"iconPath": "static/icon/icon_tab_5.png",
+				"selectedIconPath": "static/icon/icon_tab_5_s.png"
+			}
+		]
+	}
+}
