@@ -3,6 +3,63 @@
 		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
 	},
 	"pages": [{
+			"path": "pages/example/audit",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	    ,{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "横溪坞村"
+			}
+		}, {
+			"path": "pages/serve/serve",
+			"style": {
+				"navigationBarTitleText": "服务大厅",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/release/release",
+			"style": {
+				"navigationBarTitleText": "发布",
+				"navigationBarBackgroundColor": "#F2F2F6",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": "消息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationBarBackgroundColor": "#F2F2F6",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/viliageDesc/viliageDesc",
+			"style": {
+				"navigationBarTitleText": "村情概况",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/wxLogin/wxLogin",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录",
@@ -13,6 +70,13 @@
 			"path": "pages/develope/develope",
 			"style": {
 				"navigationBarTitleText": "开发中",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/noPermission/noPermission",
+			"style": {
+				"navigationBarTitleText": "警告",
 				"enablePullDownRefresh": false
 			}
 
@@ -41,9 +105,67 @@
 			}
 
 		}, {
+			"path": "pages/appointment/appointment",
+			"style": {
+				"navigationBarTitleText": "书记预约",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/appointment/appointmentAdd/appointmentAdd",
+			"style": {
+				"navigationBarTitleText": "预约书记",
+				"navigationBarBackgroundColor": "#F2F2F6",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/appointment/appointmentDetail/appointmentDetail",
+			"style": {
+				"navigationBarTitleText": "预约详情",
+				"navigationBarBackgroundColor": "#F2F2F6",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/wxUserInfo/wxUserInfo",
+			"style": {
+				"navigationBarTitleText": "完善信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/index/authSuccess",
+			"style": {
+				"navigationBarTitleText": "授权",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/index/conduct",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/moments/index",
+			"style": {
+				"navigationBarTitleText": "我的动态",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
 			"path": "pages/moments/publish",
 			"style": {
 				"navigationBarTitleText": "动态发布",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/moments/detail",
+			"style": {
+				"navigationBarTitleText": "动态详情",
 				"enablePullDownRefresh": false
 			}
 		}, {
@@ -54,12 +176,128 @@
 			}
 
 		}, {
+			"path": "pages/peace/result",
+			"style": {
+				"navigationBarTitleText": "调解结果",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/peace/progress",
+			"style": {
+				"navigationBarTitleText": "事件详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/peace/choosePeacemaker",
+			"style": {
+				"navigationBarTitleText": "老娘舅",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/peace/detail",
+			"style": {
+				"navigationBarTitleText": "调解详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/peace/list",
+			"style": {
+				"navigationBarTitleText": "矛盾调解",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/peace/review",
+			"style": {
+				"navigationBarTitleText": "评价",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/event/list",
+			"style": {
+				"navigationBarTitleText": "事件上报",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/event/detail",
+			"style": {
+				"navigationBarTitleText": "事件详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/event/publish",
 			"style": {
 				"navigationBarTitleText": "事件上报",
 				"enablePullDownRefresh": false
 			}
-		}
+		}, {
+			"path": "pages/index/contact",
+			"style": {
+				"navigationBarTitleText": "村友通讯录",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/work/party",
+			"style": {
+				"navigationBarTitleText": "党务",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/work/village",
+			"style": {
+				"navigationBarTitleText": "村务",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/work/finance",
+			"style": {
+				"navigationBarTitleText": "财务",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/work/detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+            "path" : "pages/example/feedback",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/example/setting",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/example/search",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

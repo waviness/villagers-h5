@@ -16,7 +16,7 @@
       <uni-loadmore v-if="hasMore" :status="loadStatus" />
 
       <view v-if="noData" class="empty__wrapper">
-        <image class="empty__image" src="../../static/image/no-viliager.png" />
+        <image class="empty__image" src="../static/image/no-viliager.png" />
         <view class="empty__text">暂时还没有消息哦~</view>
       </view>
     </view>

@@ -1,33 +1,14 @@
 <template>
-	<view class="container">
-		<view class="publish">
-			<view class="publish-title">
-				<view class="publish-title__name">标题：</view>
-				<view class="publish-title__input">
-					<u-input v-model="title" class="" placeholder="输入标题名称" type="text" :border="border" maxlength="30"
-						:clearable="clearable" />
-				</view>
-			</view>
-			<view class="publish__desc">矛盾描述：</view>
-			<view class="publish-textarea">
-				<u-input v-model="value" type="textarea" placeholder="在此输入矛盾描述…" :border="border" height="184"
-					auto-height="true" :clearable="clearable" maxlength="300" />
-			</view>
-			<view class="publish__desc">选择调解人：</view>
-			<view class="publish-select" @click="toChoose">
-				<view class="publish-select__placeholder"> {{ uncleName }} </view>
-				<image src="../../static/image/icon-right.png" mode=""></image>
-			</view>
-			<view class="publish__desc">上传图片</view>
-			<u-upload ref="uUpload" :action="action" :auto-upload="true" :custom-btn="true" width="160" height="160">
-				<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-					+
-				</view>
-			</u-upload>
+	<view class="feedback">
+		<view class="feedback__title">问题和意见</view>
+		<view class="feedback__text">
+			<u-input v-model="feedbackContent" :type="type" :maxlength="1000" :border="border" :height="height" :auto-height="autoHeight" />
 		</view>
-		<view class="publish-btn">
-			<u-button type="primary" shape="circle" @click="submit">发布</u-button>
+		<view class="feedback__title">图片（上传问题截图）</view>
+		<view class="feedback__imgs">
+			<u-upload ref="uUpload" :action="action" :auto-upload="false"></u-upload>
 		</view>
+		<button type="primary" @click="submit">提交反馈</button>
 	</view>
 </template>
 
@@ -35,148 +16,60 @@
 	export default {
 		data() {
 			return {
-				title: '',
-				value: '',
+				feedbackContent: '',
+				type: 'textarea',
 				border: false,
-				clearable: false,
-				uncleName: '从老娘舅数据库中选择',
-			};
+				height: 160,
+				autoHeight: true,
+				action: '',
+				fileList: [],
+				flag: true // 用于提交反馈节流
+			}
 		},
-
-		computed: {
-			action() {
-				return uni.globalData.baseUrl + '/vil-api/file/upload';
-			},
-		},
-
-		onShow() {
-			this.uncleId = uni.getStorageSync('uncleId');
-			this.uncleName = uni.getStorageSync('uncleName') || '从老娘舅数据库中选择';
-		},
-
 		methods: {
-			init() {
-				this.title = ''
-				this.value = ''
-				this.$refs.uUpload.clear()
-				uni.setStorageSync('uncleId', '')
-				uni.setStorageSync('uncleName', '')
-			},
-
-			toChoose() {
-				uni.navigateTo({
-					url: '/pages/peace/choosePeacemaker',
-				});
-			},
-
-			async submit() {
-				const isFinished = val => val.progress == 100;
-				const filterUrl = val => val.response.data.link;
-				const files = this.$refs.uUpload.lists.filter(isFinished).map(filterUrl);
-
-				const params = {
-					title: this.title,
-					content: this.value,
-					imgs: '',
-					uncleId: this.uncleId,
-				};
-
-				const res = await this.$api.createPeaceEvent(params);
-
-				if (res) {
-					uni.showToast({
-						icon: 'none',
-						title: '发布成功',
-						duration: 2000,
-					});
-
-					this.init();
+			submit() {
+				if (this.flag) {
+					this.flag = false;
+					uni.showLoading();
+					let files = [];
+					// 通过filter，筛选出上传进度为100的文件(因为某些上传失败的文件，进度值不为100，这个是可选的操作)
+					files = this.$refs.uUpload.lists.filter(val => {
+						return val.progress == 100;
+					})
+					// 如果您不需要进行太多的处理，直接如下即可
+					// files = this.$refs.uUpload.lists;
+					console.log(files)
+					console.log(this.feedbackContent)
 					setTimeout(() => {
-						uni.navigateBack()
-					}, 1000)
+						uni.hideLoading()
+						uni.showToast({
+							title: '提交成功',
+							icon: 'success'
+						});
+						this.flag = true;
+					}, 1000);
 				}
-			},
-		},
-	};
+			}
+		}
+	}
 </script>
 
 <style lang="scss" scoped>
-	.container {
-		width: 100%;
-		height: 100vh;
-		background-color: #f2f2f6;
-		padding: 24rpx;
-		box-sizing: border-box;
-	}
-
-	.publish {
-		border-radius: 16rpx;
-		background-color: #fff;
-		padding: 32rpx 24rpx;
-
-		&-title {
-			display: flex;
-			align-items: center;
-
-			&__name {
-				font-size: 32rpx;
-			}
-
-			&__input {
-				flex: 1;
-				@include input-border;
-			}
+	.feedback {
+		&__title {
+			line-height: 90rpx;
+			padding-left: 24rpx;
 		}
 
-		&-textarea {
-			@include input-border;
+		&__text {
+			background-color: #fff;
+			padding: 16rpx 24rpx;
+			font-size: 30rpx;
 		}
 
-		&__desc {
-			margin: 48rpx 0 32rpx 0;
-			font-size: 32rpx;
+		&__imgs {
+			background-color: #fff;
+			padding: 16rpx;
 		}
-
-		&-select {
-			width: 100%;
-			height: 80rpx;
-			border: 2rpx solid #dbdbdb;
-			border-radius: 16rpx;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: 0 24rpx;
-			box-sizing: border-box;
-
-			&__placeholder {
-				color: #757575;
-				font-size: 26rpx;
-			}
-
-			image {
-				width: 40rpx;
-				height: 40rpx;
-			}
-		}
-
-		&-btn {
-			padding: 112rpx 72rpx;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			box-sizing: border-box;
-		}
-	}
-
-	.slot-btn {
-		width: 160rpx;
-		height: 160rpx;
-		color: #888;
-		font-size: 100rpx;
-		line-height: 140rpx;
-		text-align: center;
-		background: #e3e3e3;
-		border-radius: 16rpx;
 	}
 </style>

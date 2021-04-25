@@ -70,12 +70,9 @@
     },
     "h5" : {
         "title" : "横溪坞村村民端",
-        "domain" : "https://waviness.github.io/village/",
+        "domain" : "https://waviness.github.io/example/",
         "router" : {
             "base" : "./"
-        },
-        "devServer" : {
-            "https" : true
         }
     }
 }

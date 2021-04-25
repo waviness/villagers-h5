@@ -1,23 +1,14 @@
 <template>
-	<view class="container">
-		<view class="mail-box">
-			<view class="mail-title">
-				<view class="mail-title-t">信件标题：</view>
-				<input class="mail-title-input" type="text" maxlength="30" placeholder-class="place-holder" placeholder="输入标题" v-model="mail.title" />
-			</view>
-			
-			<view class="mail-cont">
-				<textarea class="mail-cont-input" placeholder-class="place-holder" placeholder="在此输入详细描述…" maxlength="200" v-model="mail.content" />
-			</view>
-			
-			<view class="line"></view>
-			
-			<view class="mail-type">
-				<view class="mail-type-t">匿名</view>
-				<switch @change="switchChange" />
-			</view>
+	<view class="feedback">
+		<view class="feedback__title">问题和意见</view>
+		<view class="feedback__text">
+			<u-input v-model="feedbackContent" :type="type" :maxlength="1000" :border="border" :height="height" :auto-height="autoHeight" />
 		</view>
-		<view class="submit" @click="mailAdd()">提交</view>
+		<view class="feedback__title">图片（上传问题截图）</view>
+		<view class="feedback__imgs">
+			<u-upload ref="uUpload" :action="action" :auto-upload="false"></u-upload>
+		</view>
+		<button type="primary" @click="submit">提交反馈</button>
 	</view>
 </template>
 
@@ -25,111 +16,60 @@
 	export default {
 		data() {
 			return {
-				mail: {
-					"content": "",
-					"isAnonymous": false,
-					"title": ""
-				}
+				feedbackContent: '',
+				type: 'textarea',
+				border: false,
+				height: 160,
+				autoHeight: true,
+				action: '',
+				fileList: [],
+				flag: true // 用于提交反馈节流
 			}
 		},
-		onLoad() {
-			
-		},
-		onShow() {
-			
-		},
 		methods: {
-			switchChange(e) {
-				console.log(e)
-				if (e.detail.value) {
-					this.mail.isAnonymous = true
-				} else {
-					this.mail.isAnonymous = false
-				}
-			},
-			mailAdd() {
-				this.$api.newMailbox(this.mail).then(res => {
-					this.$toast('信件发送成功')
-					uni.navigateBack({
-						delta: 1
+			submit() {
+				if (this.flag) {
+					this.flag = false;
+					uni.showLoading();
+					let files = [];
+					// 通过filter，筛选出上传进度为100的文件(因为某些上传失败的文件，进度值不为100，这个是可选的操作)
+					files = this.$refs.uUpload.lists.filter(val => {
+						return val.progress == 100;
 					})
-				})
+					// 如果您不需要进行太多的处理，直接如下即可
+					// files = this.$refs.uUpload.lists;
+					console.log(files)
+					console.log(this.feedbackContent)
+					setTimeout(() => {
+						uni.hideLoading()
+						uni.showToast({
+							title: '提交成功',
+							icon: 'success'
+						});
+						this.flag = true;
+					}, 1000);
+				}
 			}
 		}
 	}
 </script>
 
-<style lang="less" scoped>
-	.container {
-		width: 100%;
-		min-height: calc(100vh - 30rpx);
-		padding-top: 30rpx;
-		background: #F2F2F6;
-	}
-	.mail-box{
-		width: 654rpx;
-		height: auto;
-		padding: 24rpx;
-		background-color: #FFFFFF;
-		border-radius: 16rpx;
-		margin: auto;
-		.mail-title{
-			height: 60rpx;
-			margin-bottom: 30rpx;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			.mail-title-t{
-				font-size: 32rpx;
-			}
-			.mail-title-input{
-				width: 444rpx;
-				height: 56rpx;
-				line-height: 56rpx;
-				padding: 0 12rpx;
-				font-size: 26rpx;
-				border: 1rpx #DBDBDB solid;
-				border-radius: 12rpx;
-			}
+<style lang="scss" scoped>
+	.feedback {
+		&__title {
+			line-height: 90rpx;
+			padding-left: 24rpx;
 		}
-		.mail-cont{
-			width: 606rpx;
-			height: auto;
-			padding: 24rpx;
-			border: 1rpx #DBDBDB solid;
-			border-radius: 16rpx;
-			.mail-cont-input{
-				width: 100%;
-				line-height: 36rpx;
-				font-size: 26rpx;
-			}
+
+		&__text {
+			background-color: #fff;
+			padding: 16rpx 24rpx;
+			font-size: 30rpx;
 		}
-		.line{
-			width: 654rpx;
-			height: 1px;
-			background-color: rgba(159, 159, 159, 0.5);
-			margin: 40rpx 0;
+
+		&__imgs {
+			background-color: #fff;
+			padding: 16rpx;
 		}
-		.mail-type{
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			.mail-type-t{
-				font-size: 32rpx;
-			}
-		}
-	}
-	.submit{
-		width: 560rpx;
-		height: 80rpx;
-		line-height: 80rpx;
-		background-color: #5FC2FF;
-		border-radius: 40rpx;
-		text-align: center;
-		font-size: 32rpx;
-		color: #FFFFFF;
-		position: absolute;
-		bottom: 112rpx;
-		left: 85rpx;
 	}
 </style>
