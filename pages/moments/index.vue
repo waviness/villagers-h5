@@ -1,9 +1,9 @@
 <template>
 	<view class="container">
-		<!-- <view class="header">
+		<view class="header">
 			<view class="header__desc">历史动态</view>
 			<image @click="toPublish" class="header__img" src="../../static/image/icon-add.png"></image>
-		</view> -->
+		</view>
 
 		<view v-if="list.length" class="moments-list">
 			<moments v-for="item in list" :key="item.id" :data="item" @click-more="onClickMore"
