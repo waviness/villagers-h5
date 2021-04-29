@@ -73,6 +73,7 @@
 			padding: 0 24rpx;
 			display: flex;
 			align-items: center;
+			width: 100%;
 
 			&__img {
 				width: 80rpx;

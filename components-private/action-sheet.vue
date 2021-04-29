@@ -8,7 +8,7 @@
   >
     <view class="action-sheet__wrapper">
       <view class="action-sheet__content">
-        <scroll-view class="action-sheet__scroll" scroll-x>
+        <view class="action-sheet__scroll" scroll-x>
           <view class="action-sheet__list">
             <view
               v-for="(item, index) in items"
@@ -20,7 +20,7 @@
               <view class="action-sheet__text">{{ item.text }}</view>
             </view>
           </view>
-        </scroll-view>
+        </view>
       </view>
       <view class="action-sheet__cancel-button" @click="onCancel">取消</view>
     </view>
@@ -39,7 +39,7 @@ export default {
     return {
       items: [
         {
-          icon: '../static/image/icon-delete.png',
+          icon: '/static/image/icon-delete.png',
           text: '删除',
           command: 'DELETE',
         },

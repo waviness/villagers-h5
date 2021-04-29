@@ -73,11 +73,11 @@
 				const isFinished = val => val.progress == 100;
 				const filterUrl = val => val.response.data.link;
 				const files = this.$refs.uUpload.lists.filter(isFinished).map(filterUrl);
-
+				
 				const params = {
 					title: this.title,
 					content: this.value,
-					imgs: '',
+					imgs: files,
 					uncleId: this.uncleId,
 				};
 

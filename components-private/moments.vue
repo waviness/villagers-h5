@@ -18,7 +18,7 @@
 						src="../static/image/icon-right.png" @click="onClickMore" />
 				</view>
 				<view class="moments-list-item__header__info__bottom">
-					{{ data.cadreTitle }}
+					<view class="moments-list-item__header__info__bottom--text" v-for="(item, idx) in data.cadreTitle" :key="idx">{{ item }}</view>
 				</view>
 			</view>
 		</view>
@@ -166,8 +166,13 @@
 				}
 
 				&__bottom {
-					font-size: 24rpx;
-					color: #666;
+					display: flex;
+
+					&--text {
+						font-size: 24rpx;
+						color: #666;
+						margin-right: 10rpx;
+					}
 				}
 			}
 		}

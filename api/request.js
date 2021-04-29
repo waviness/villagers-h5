@@ -31,7 +31,7 @@ function http(url, params, type, header) {
 				// console.log(res)
 				if (res[1].statusCode == 200 && res[1].data.code == 200) {
 					resolve(res[1].data);
-				} else if (res[1].statusCode == 200 && res[1].data.code == 400) {
+				} else if (res[1].statusCode == 200 && res[1].data.code == 401) {
 					uni.showToast({
 						icon: 'none',
 						title: res[1].data.errMsg || '登录已过期，请重新登录',
@@ -43,6 +43,12 @@ function http(url, params, type, header) {
 							url: '/pages/wxLogin/wxLogin',
 						});
 					}, 1000);
+				} else if (res[1].statusCode == 200 && res[1].data.code == 400) {
+					uni.showToast({
+						icon: 'none',
+						title: res[1].data.errMsg,
+						duration: 2000,
+					});
 				} else if (
 					res[1].statusCode == 200 &&
 					res[1].data.code != 200 &&
