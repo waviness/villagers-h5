@@ -91,6 +91,7 @@
 					});
 
 					this.init();
+					uni.setStorageSync('refresh', true)
 					setTimeout(() => {
 						uni.navigateBack()
 					}, 1000)

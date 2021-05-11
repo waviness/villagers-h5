@@ -46,8 +46,17 @@
 			};
 		},
 
-		onShow() {
+		onLoad() {
 			this.getList();
+		},
+		
+		onShow() {
+			if (uni.getStorageSync('refresh')) {
+				this.status = 'loading'
+				this.page = 1;
+				this.list = [];
+				this.getList();
+			}
 		},
 
 		onPullDownRefresh() {
@@ -69,6 +78,7 @@
 
 		methods: {
 			toDetail(id) {
+				uni.setStorageSync('refresh', false)
 				uni.navigateTo({
 					url: '/pages/event/detail?id=' + id,
 				});

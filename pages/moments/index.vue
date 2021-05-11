@@ -43,9 +43,18 @@
 				noData: false,
 			};
 		},
+		
+		onLoad() {
+			this.getList();
+		},
 
 		onShow() {
-			this.getList();
+			if (uni.getStorageSync('refresh')) {
+				this.status = 'loading'
+				this.page = 1;
+				this.list = [];
+				this.getList();
+			}
 		},
 
 		onPullDownRefresh() {
@@ -67,6 +76,7 @@
 		
 		methods: {
 			toDetail(id) {
+				uni.setStorageSync('refresh', false)
 				uni.navigateTo({
 					url: '/pages/moments/detail?id=' + id,
 				});

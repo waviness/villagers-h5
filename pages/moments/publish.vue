@@ -56,6 +56,7 @@
 						duration: 2000,
 					});
 					this.init()
+					uni.setStorageSync('refresh', true)
 					setTimeout(() => {
 						uni.navigateBack()
 					}, 1000)
