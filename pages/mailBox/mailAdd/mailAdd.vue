@@ -81,6 +81,7 @@
 			align-items: center;
 			.mail-title-t{
 				font-size: 32rpx;
+				width: 200rpx;
 			}
 			.mail-title-input{
 				width: 444rpx;
@@ -105,7 +106,7 @@
 			}
 		}
 		.line{
-			width: 654rpx;
+			width: 100%;
 			height: 1px;
 			background-color: rgba(159, 159, 159, 0.5);
 			margin: 40rpx 0;
