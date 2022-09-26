@@ -129,8 +129,9 @@
 		text-align: center;
 		font-size: 32rpx;
 		color: #FFFFFF;
-		position: absolute;
-		bottom: 112rpx;
-		left: 85rpx;
+		// position: absolute;
+		// bottom: 112rpx;
+		// left: 85rpx;
+		margin: 80rpx auto 200rpx;
 	}
 </style>

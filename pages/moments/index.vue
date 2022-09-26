@@ -83,6 +83,7 @@
 			},
 
 			toPublish() {
+				uni.setStorageSync('refresh', false)
 				uni.navigateTo({
 					url: '/pages/moments/publish',
 				});
